@@ -1,5 +1,6 @@
 package com.courses.springframework6webapp.domain;
 
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -74,6 +75,23 @@ public class Book {
 	 */
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Book))
+			return false;
+		Book other = (Book) obj;
+		return id == other.id;
+	}
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", authors=" + authors + "]";
 	}
 
 	
