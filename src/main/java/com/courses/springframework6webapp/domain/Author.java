@@ -1,5 +1,6 @@
 package com.courses.springframework6webapp.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class Author {
 	private String lastName;
 	
 	@ManyToMany(mappedBy = "authors")
-	private Set<Book> books; //usando Set ao invés de List pq set pode duplicar elementos e o Set não duplica
+	private Set<Book> books = new HashSet<>(); //usando Set ao invés de List pq set pode duplicar elementos e o Set não duplica
 	
 	
 	/**

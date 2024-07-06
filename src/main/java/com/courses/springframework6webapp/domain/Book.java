@@ -1,5 +1,6 @@
 package com.courses.springframework6webapp.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class Book {
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
 			inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private Set<Author> authors; //usando Set ao invés de List pq set pode duplicar elementos e o Set não duplica
+	private Set<Author> authors = new HashSet<>(); //usando Set ao invés de List pq set pode duplicar elementos e o Set não duplica
 	
 	/**
 	 * @return the authors
