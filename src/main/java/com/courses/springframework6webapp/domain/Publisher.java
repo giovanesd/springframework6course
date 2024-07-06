@@ -4,11 +4,13 @@
 package com.courses.springframework6webapp.domain;
 
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 /**
  * 
@@ -23,7 +25,10 @@ public class Publisher {
 	private String address;
 	private String city;
 	private String state;
-	private String zip;
+	private String zipCode;
+	
+	@OneToMany(mappedBy = "publisher")
+	private Set<Book> books;
 	
 	/**
 	 * @return the id
@@ -86,22 +91,22 @@ public class Publisher {
 		this.state = state;
 	}
 	/**
-	 * @return the zip
+	 * @return the zipCode
 	 */
-	public String getZip() {
-		return zip;
+	public String getZipCode() {
+		return zipCode;
 	}
 	/**
-	 * @param zip the zip to set
+	 * @param zipCode the zipCode to set
 	 */
-	public void setZip(String zip) {
-		this.zip = zip;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 	
 	@Override
 	public String toString() {
 		return "Publisher [id=" + id + ", publisherName=" + publisherName + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zip=" + zip + "]";
+				+ ", state=" + state + ", zipCode=" + zipCode + "]";
 	}
 	
 	@Override

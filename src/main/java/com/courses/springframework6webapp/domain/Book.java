@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 /**
  * Created by Giovane, Spring Framework Guru Course.
@@ -29,6 +30,21 @@ public class Book {
 			inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors = new HashSet<>(); //usando Set ao invés de List pq set pode duplicar elementos e o Set não duplica
 	
+	@ManyToOne
+	private Publisher publisher;
+	
+	/**
+	 * @return the publisher
+	 */
+	public Publisher getPublisher() {
+		return publisher;
+	}
+	/**
+	 * @param publisher the publisher to set
+	 */
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
 	/**
 	 * @return the authors
 	 */
