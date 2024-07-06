@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.courses.springframework6webapp.domain.Author;
 import com.courses.springframework6webapp.domain.Book;
+import com.courses.springframework6webapp.domain.Publisher;
 import com.courses.springframework6webapp.repositories.AuthorRepository;
 import com.courses.springframework6webapp.repositories.BookRepository;
+import com.courses.springframework6webapp.repositories.PublisherRepository;
 
 /**
  * 
@@ -19,10 +21,12 @@ public class BootstrapData implements CommandLineRunner {
 	
 	private final AuthorRepository authorRepository;
 	private final BookRepository bookRepository;
+	private final PublisherRepository publisherRepository;
 		
-	public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+	public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
 		this.authorRepository = authorRepository;
 		this.bookRepository = bookRepository;
+		this.publisherRepository = publisherRepository;
 	}
 
 	@Override
@@ -59,5 +63,15 @@ public class BootstrapData implements CommandLineRunner {
 		System.out.println("Author count: " + authorRepository.count());
 		System.out.println("Book count: " + bookRepository.count());
 		
+		Publisher publisher = new Publisher();
+		publisher.setPublisherName("O'Reilly Media Inc");
+		publisher.setAddress("1005 Gravenstein Hwy N");
+		publisher.setCity("Sebastopol");
+		publisher.setState("California");
+		publisher.setZip("95472");
+		
+		Publisher publisherSaved = publisherRepository.save(publisher);
+		
+		System.out.println("Publisher count: " + publisherRepository.count());
 	}
 }

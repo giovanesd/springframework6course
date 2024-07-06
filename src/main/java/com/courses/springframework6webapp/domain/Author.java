@@ -86,7 +86,7 @@ public class Author {
 		if (!(obj instanceof Author))
 			return false;
 		Author other = (Author) obj;
-		return id == other.id;
+		return Objects.equals(id, other.id);
 	}
 	@Override
 	public String toString() {

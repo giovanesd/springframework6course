@@ -88,7 +88,8 @@ public class Book {
 		if (!(obj instanceof Book))
 			return false;
 		Book other = (Book) obj;
-		return id == other.id;
+		return Objects.equals(id, other.id);
+
 	}
 	@Override
 	public String toString() {
