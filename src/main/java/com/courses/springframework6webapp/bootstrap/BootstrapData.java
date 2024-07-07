@@ -41,38 +41,44 @@ public class BootstrapData implements CommandLineRunner {
 		publisher.setAddress("1005 Gravenstein Hwy N");
 		publisher.setCity("Sebastopol");
 		publisher.setState("California");
-		publisher.setZipCode("95472");Author author = new Author();
-
+		publisher.setZipCode("95472");
+		
 		Publisher publisherSaved = publisherRepository.save(publisher);
 		
-		author.setFirstName("Giovane");
-		author.setLastName("de Deus");
-		
+		Author author = new Author();
+
 		Book book = new Book();
 		book.setTitle("Dominando Spring");
 		book.setIsbn("123456");
 		book.setPublisher(publisherSaved);
+
+		Book bookSaved = bookRepository.save(book);
+
+		author.setFirstName("Giovane");
+		author.setLastName("de Deus");
+		author.getBooks().add(bookSaved);
 		
 		Author authorSaved = authorRepository.save(author);
-		Book bookSaved = bookRepository.save(book);
 		
-		authorSaved.getBooks().add(bookSaved);
-		authorRepository.save(authorSaved);
-		
-		author = new Author();
-		author.setFirstName("Francisco");
-		author.setLastName("Neto");
+		bookSaved.getAuthors().add(authorSaved);
+		bookRepository.save(bookSaved);
 		
 		book = new Book();
 		book.setTitle("Dominando Preguiça");
 		book.setIsbn("123457");
 		book.setPublisher(publisherSaved);
+
+		bookSaved = bookRepository.save(book);
+
+		author = new Author();
+		author.setFirstName("Francisco");
+		author.setLastName("Neto");
+		author.getBooks().add(bookSaved);
 		
 		authorSaved = authorRepository.save(author);
-		bookSaved = bookRepository.save(book);
 		
-		authorSaved.getBooks().add(bookSaved);
-		authorRepository.save(authorSaved);
+		bookSaved.getAuthors().add(authorSaved);
+		bookRepository.save(bookSaved);
 		
 		System.out.println("In Bootstrap");
 		System.out.println("Author count: " + authorRepository.count());
